@@ -1,4 +1,45 @@
 <!DOCTYPE html>
+<!--
+  writing.html — Writing Index Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  PAGE ROLE
+  Lists all three published essays with a card for each.
+  Each card links to a native essay page built in the same
+  Forest & Stone theme.  The essays are original content
+  migrated from the Wix blog and rebuilt here so they stay
+  on-brand and fully self-contained (no external redirects).
+
+  ESSAY INVENTORY
+  1. honesty-integrity-and-learner-centered-design.html
+     Category: Craft & ethics
+     Topic: Why integrity is the foundation of ID practice
+
+  2. designing-my-next-chapter-in-learning-experience-design.html
+     Category: Career
+     Topic: Transitioning from classroom teaching to ID
+
+  3. from-content-to-capability.html
+     Category: Future of L&D
+     Topic: Generative AI and learning analytics reshaping the field
+     (Includes APA-formatted academic references block)
+
+  CARD COMPONENT (.more-card)
+  Each card is a full <a> element (the entire card is clickable).
+  Hover: lifts -5px with a shadow.  Arrow inside .read nudges
+  right.  Layout defined in styles.css §12.
+
+  TO ADD A NEW ESSAY
+  1. Create a new .html file modeled after an existing essay page.
+  2. Add a new <a class="more-card reveal"> block here in the grid.
+  3. Update the "More writing" sections on the OTHER essay pages
+     to include a card for the new essay.
+
+  ACTIVE NAV STATE
+  class="active" is on the Writing link.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,12 +54,16 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — class="active" is on Writing
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
     <nav class="nav-links" id="navLinks">
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
+      <!-- "Writing" carries class="active" — underline shown via styles.css -->
       <a href="writing.html" class="active">Writing</a>
       <a href="contact.html" class="nav-cta">Get in touch</a>
     </nav>
@@ -26,6 +71,10 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HEADER
+     ═══════════════════════════════════════════════════ -->
 <header class="page-header">
   <div class="wrap">
     <div class="kicker">Writing</div>
@@ -34,31 +83,52 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     ESSAY CARD GRID
+     .essay-grid: 3-column on desktop, 1-column on mobile.
+     Each <a class="more-card reveal"> is a fully clickable card.
+     Cards appear one by one as the user scrolls via .reveal.
+     ═══════════════════════════════════════════════════ -->
 <section class="section-pad">
   <div class="wrap">
     <div class="essay-grid">
+
+      <!-- ── Essay 1: Craft & ethics ── -->
       <a class="more-card reveal" href="honesty-integrity-and-learner-centered-design.html">
+        <!-- Category label — uppercase brass, small -->
         <div class="mc-tag">Craft &amp; ethics</div>
+        <!-- Essay title in Fraunces display font -->
         <h3>Honesty, Integrity, and Learner-Centered Design</h3>
+        <!-- Short excerpt — gives context without spoiling the essay -->
         <p class="excerpt">Why integrity is the foundation of instructional design — from how I define a problem to how I report results.</p>
         <span class="read">Read essay <span class="arrow">→</span></span>
       </a>
+
+      <!-- ── Essay 2: Career ── -->
       <a class="more-card reveal" href="designing-my-next-chapter-in-learning-experience-design.html">
         <div class="mc-tag">Career</div>
         <h3>Designing My Next Chapter in Learning Experience Design</h3>
         <p class="excerpt">Moving from twelve years in the classroom into instructional design — and the practice I'm building along the way.</p>
         <span class="read">Read essay <span class="arrow">→</span></span>
       </a>
+
+      <!-- ── Essay 3: Future of L&D ── -->
       <a class="more-card reveal" href="from-content-to-capability.html">
         <div class="mc-tag">Future of L&amp;D</div>
         <h3>From Content to Capability: How AI &amp; Analytics Are Reshaping Learning Design</h3>
         <p class="excerpt">Generative AI and learning analytics are changing what designers build — and how we prove it works.</p>
         <span class="read">Read essay <span class="arrow">→</span></span>
       </a>
+
     </div>
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — identical across all pages
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">

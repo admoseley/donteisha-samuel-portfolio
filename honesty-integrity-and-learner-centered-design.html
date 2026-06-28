@@ -1,4 +1,49 @@
 <!DOCTYPE html>
+<!--
+  honesty-integrity-and-learner-centered-design.html — Essay Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  ESSAY DETAILS
+  Title:    Honesty, Integrity, and Learner-Centered Design
+  Category: Craft & ethics
+  Date:     May 2026
+  Length:   ~2 min read
+  Source:   Originally published on the Wix portfolio blog at
+            sdonteisha.wixsite.com/dsam-id — rebuilt here as a
+            native, on-brand page so no external redirects are needed.
+
+  CONTENT SUMMARY
+  Explores how integrity shows up in every phase of instructional
+  design: honest problem definition, aligned assessments that
+  measure real learning (not busy work), and a reflective revision
+  practice that treats failure as data.  Anchors in the Canyon
+  Center for Character Education Professional Competencies.
+
+  PAGE STRUCTURE
+  <article>
+    <header class="article-hero">   — title block, standfirst, byline
+    <div class="prose">             — long-form body content
+  </article>
+  <section class="more-writing">   — two cards linking to the other essays
+  <footer>                         — shared site footer
+
+  ARTICLE HERO COMPONENTS
+  • .back-link      — "← Back to writing" (link to writing.html)
+  • .article-kicker — category label with a brass leading bar
+  • h1              — essay title; <em> renders in italic evergreen
+  • .standfirst     — italic intro sentence (editorial convention)
+  • .byline         — DS avatar initials, name, date, read time
+
+  "MORE WRITING" SECTION
+  Shows the other two essays as cards (.more-card).
+  This section uses .more-grid (2-column) rather than .essay-grid
+  (3-column) since only two cards appear here.
+
+  ACTIVE NAV STATE
+  class="active" is on the Writing link (this essay lives under Writing).
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,6 +58,9 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — Writing is active because this essay lives under Writing
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
@@ -26,14 +74,34 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     ARTICLE — semantic container for the full essay
+     ═══════════════════════════════════════════════════ -->
 <article>
+
+  <!-- ── ARTICLE HERO: title block ──────────────────────────
+       Max-width 800px (wider than the 720px prose column) so
+       the standfirst and byline have a little more room.
+       ──────────────────────────────────────────────────────── -->
   <header class="article-hero">
     <div class="wrap">
+
+      <!-- Back navigation — gap widens on hover (styles.css §14) -->
       <a href="writing.html" class="back-link">← Back to writing</a>
+
+      <!-- Category label — brass leading bar added via ::before in CSS -->
       <div class="article-kicker">Craft &amp; ethics</div>
+
+      <!-- Main headline — <em> renders italic evergreen green -->
       <h1>Honesty, Integrity, and <em>Learner-Centered Design</em></h1>
+
+      <!-- Standfirst: italic summary sentence above the byline -->
       <p class="standfirst">Integrity isn't a finishing touch in instructional design — it's the foundation that protects learner trust, from how I define a problem to how I report results.</p>
+
+      <!-- Byline: avatar, name, date, estimated read time -->
       <div class="byline">
+        <!-- DS monogram avatar — replace with <img> if a headshot is added -->
         <div class="avatar">DS</div>
         <span class="who">D. Samuel</span>
         <span class="sep">•</span>
@@ -41,47 +109,77 @@
         <span class="sep">•</span>
         <span>2 min read</span>
       </div>
+
     </div>
   </header>
 
+
+  <!-- ── PROSE: long-form body ──────────────────────────────
+       Max-width 720px for comfortable ~70-character line length.
+       p, h2, .pullquote all styled in styles.css §14.
+       h2 has a 38px brass bar above it (::before pseudo-element).
+       ──────────────────────────────────────────────────────── -->
   <div class="prose">
     <div class="wrap">
+
       <p>Honesty and integrity matter in instructional design because learning influences what people believe they can do — and what organizations rely on them to do. In my work, integrity shows up in how I define the problem, how I design assessments, and how I communicate results. I avoid <strong>"busy" activities</strong> that look engaging but don't measure real learning. Instead, I aim for alignment, so objectives, instruction, practice, and assessment connect in a way that is fair and meaningful for learners.</p>
 
+      <!-- Section heading — brass 3px bar drawn above via ::before -->
       <h2>Honesty through reflection and revision</h2>
+
       <p>I also practice honesty through reflection and revision. When feedback or results show that something isn't working, I treat that as useful information — not a failure. I adjust the design, clarify directions, strengthen practice opportunities, and improve supports so learners have a better path to success.</p>
 
+      <!-- Pull quote — large italic, left brass border (styles.css §14) -->
       <p class="pullquote">When results show something isn't working, I treat that as useful information — not a failure.</p>
 
       <p>This connects to one of my professional strengths: being willing to analyze what is not working and revise with purpose, instead of moving forward with a design simply because it is already finished.</p>
 
       <h2>The strengths I bring</h2>
+
       <p>My professional strengths include organization, intentional planning, learner-centered thinking, and alignment. With <strong>12 years of experience in elementary education</strong>, I have learned how important it is to break information into manageable steps, anticipate where learners may struggle, and create supports that build confidence. Through my instructional design coursework, I have also strengthened my ability to use models such as ADDIE, apply backward design, write measurable objectives, and design assessments that reflect real learning.</p>
 
       <h2>The values that guide me</h2>
+
       <p>The Canyon Center for Character Education Professional Competencies emphasizes ethical decision-making, responsibility, and reflective growth. Those values guide how I protect learner trust, respect diverse perspectives, and design with care. Ultimately, I want my portfolio to reflect not only <em>what</em> I create, but <em>how</em> I create it — thoughtfully, responsibly, and with the learner at the center.</p>
+
     </div>
   </div>
+
 </article>
 
+
+<!-- ═══════════════════════════════════════════════════
+     MORE WRITING — links to the other two essays
+     .more-grid: 2-column (differs from the 3-column .essay-grid
+     on writing.html since only two related essays are shown here).
+     Cards do NOT have class="reveal" here — they're often below
+     the fold already and the observer handles them.
+     ═══════════════════════════════════════════════════ -->
 <section class="more-writing">
   <div class="wrap">
     <div class="eyebrow">More writing</div>
     <div class="more-grid">
+
       <a class="more-card" href="designing-my-next-chapter-in-learning-experience-design.html">
         <div class="mc-tag">Career</div>
         <h3>Designing My Next Chapter in Learning Experience Design</h3>
         <span class="read">Read essay <span class="arrow">→</span></span>
       </a>
+
       <a class="more-card" href="from-content-to-capability.html">
         <div class="mc-tag">Future of L&amp;D</div>
         <h3>From Content to Capability: How AI &amp; Analytics Are Reshaping Learning Design</h3>
         <span class="read">Read essay <span class="arrow">→</span></span>
       </a>
+
     </div>
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — identical across all pages
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">

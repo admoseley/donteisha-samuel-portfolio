@@ -1,4 +1,46 @@
 <!DOCTYPE html>
+<!--
+  work.html — Selected Work (Projects) Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  PAGE ROLE
+  Showcases three instructional design projects.  All three are
+  framed as concept / coursework work — they were designed during
+  D. Samuel's ID program and demonstrate design thinking, not
+  live deployed solutions.  This honest framing is intentional:
+  the "✦ Concept project" tag on each article, and the "If
+  implemented, I'd measure..." language in Success measures, make
+  clear that these are portfolio-grade design artifacts.
+
+  PROJECT STRUCTURE (each <article class="project">)
+  ┌──────────────────────────────────────────────────────┐
+  │  01         │ Title + tags + PAO detail grid │ View → │
+  └──────────────────────────────────────────────────────┘
+  • Column 1 (88px):  italic brass project number (.pnum)
+  • Column 2 (1fr):   h3 title, .tags row, .pao detail grid
+  • Column 3 (auto):  "View [artifact] →" link opening the PDF
+
+  PAO GRID (Problem / Approach / Design rationale / Success measures)
+  Each row is a two-column micro-grid: label (128px) | value.
+  Labels are uppercase in --ink-muted.  Values are --ink-soft.
+  Bold <strong> tags inside values highlight key terms.
+
+  PDF LINKS
+  All three PDFs are hosted in the docs/ folder alongside this
+  file.  target="_blank" opens them in a new tab.
+  rel="noopener" prevents the PDF tab from accessing this window
+  via window.opener (a security best practice for _blank links).
+
+  PDF FILE MAP
+  • docs/onboarding-workshop.pdf              — Project 01 (6MB)
+  • docs/my-future-my-fit.pdf                — Project 02 (749KB)
+  • docs/implementation-evaluation-reflection.pdf — Project 03 (116KB)
+
+  ACTIVE NAV STATE
+  class="active" is on the Work link in .nav-links.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,10 +55,14 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — class="active" is on Work to show the underline
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
     <nav class="nav-links" id="navLinks">
+      <!-- "Work" carries class="active" — full underline in styles.css -->
       <a href="work.html" class="active">Work</a>
       <a href="about.html">About</a>
       <a href="writing.html">Writing</a>
@@ -26,6 +72,13 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HEADER — inner-page title block
+     .kicker — small uppercase label
+     h1      — display headline with italic <em> word
+     .lead   — supporting paragraph explaining concept framing
+     ═══════════════════════════════════════════════════ -->
 <header class="page-header">
   <div class="wrap">
     <div class="kicker">Selected work</div>
@@ -34,58 +87,165 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     PROJECTS SECTION
+     Three <article class="project reveal"> elements.
+     .reveal: each project fades in as the user scrolls.
+     The 3-column grid is defined in styles.css §10.
+     On mobile (≤900px) the grid collapses to a single column.
+     ═══════════════════════════════════════════════════ -->
 <section class="section-pad">
   <div class="wrap">
-    <!-- Project 1 -->
+
+    <!-- ─────────────────────────────────────────────
+         PROJECT 01 — Onboarding Workshop
+         Domain: workplace learning / instructional design
+         Framework: ADDIE
+         Artifact: 30-page workshop guide PDF (5.9 MB)
+         ───────────────────────────────────────────── -->
     <article class="project reveal">
+      <!-- Project number — italic brass in Fraunces -->
       <div class="pnum">01</div>
+
       <div>
         <h3>Onboarding Workshop for New Instructional Designers</h3>
-        <div class="tags"><span class="tag concept">Concept project</span><span class="tag">ADDIE</span><span class="tag">Workshop design</span><span class="tag">Facilitation</span></div>
+
+        <!-- Tags: first is always .concept to flag coursework; remaining are skill/method tags -->
+        <div class="tags">
+          <span class="tag concept">Concept project</span>
+          <span class="tag">ADDIE</span>
+          <span class="tag">Workshop design</span>
+          <span class="tag">Facilitation</span>
+        </div>
+
+        <!-- PAO: Problem / Approach / Design rationale / Success measures
+             Two-column micro-grid: label (128px) | value.
+             "If implemented..." language is deliberate — honest about
+             the theoretical nature of this coursework project. -->
         <div class="pao">
-          <div><span class="k">Problem</span><span class="v">New instructional designers often ramp up inconsistently, with no shared foundation in design process.</span></div>
-          <div><span class="k">Approach</span><span class="v">Designed a structured workshop walking through each <strong>ADDIE</strong> phase with hands-on practice, templates, and aligned objectives.</span></div>
-          <div><span class="k">Design rationale</span><span class="v">Grounded each phase in adult-learning principles so new designers build confidence through <strong>practice rather than lecture</strong>.</span></div>
-          <div><span class="k">Success measures</span><span class="v">If implemented, I'd track time-to-first-deliverable, pre/post confidence self-assessments, and manager feedback at 30/60/90 days.</span></div>
+          <div>
+            <span class="k">Problem</span>
+            <span class="v">New instructional designers often ramp up inconsistently, with no shared foundation in design process.</span>
+          </div>
+          <div>
+            <span class="k">Approach</span>
+            <span class="v">Designed a structured workshop walking through each <strong>ADDIE</strong> phase with hands-on practice, templates, and aligned objectives.</span>
+          </div>
+          <div>
+            <span class="k">Design rationale</span>
+            <span class="v">Grounded each phase in adult-learning principles so new designers build confidence through <strong>practice rather than lecture</strong>.</span>
+          </div>
+          <div>
+            <span class="k">Success measures</span>
+            <span class="v">If implemented, I'd track time-to-first-deliverable, pre/post confidence self-assessments, and manager feedback at 30/60/90 days.</span>
+          </div>
         </div>
       </div>
-      <a href="docs/onboarding-workshop.pdf" target="_blank" rel="noopener" class="view">View workshop <span class="arrow">→</span></a>
+
+      <!-- PDF link — opens in new tab; rel="noopener" for security -->
+      <a href="docs/onboarding-workshop.pdf" target="_blank" rel="noopener" class="view">
+        View workshop <span class="arrow">→</span>
+      </a>
     </article>
 
-    <!-- Project 2 -->
+
+    <!-- ─────────────────────────────────────────────
+         PROJECT 02 — My Future, My Fit
+         Domain: K-12 / career exploration
+         Framework: Backward Design (Wiggins & McTighe)
+         Artifact: 14-page instructional materials PDF (749 KB)
+         ───────────────────────────────────────────── -->
     <article class="project reveal">
       <div class="pnum">02</div>
+
       <div>
         <h3>My Future, My Fit: Instructional Materials &amp; Assessment</h3>
-        <div class="tags"><span class="tag concept">Concept project</span><span class="tag">Curriculum</span><span class="tag">Assessment</span><span class="tag">Backward design</span></div>
+
+        <div class="tags">
+          <span class="tag concept">Concept project</span>
+          <span class="tag">Curriculum</span>
+          <span class="tag">Assessment</span>
+          <span class="tag">Backward design</span>
+        </div>
+
         <div class="pao">
-          <div><span class="k">Problem</span><span class="v">High-school students need a clear way to explore college, certification, apprenticeship, and workforce pathways.</span></div>
-          <div><span class="k">Approach</span><span class="v">Designed instructional materials plus an aligned assessment that guide students to compare options and build a <strong>personalized post-graduation plan</strong>.</span></div>
-          <div><span class="k">Design rationale</span><span class="v">Used <strong>backward design</strong> so every activity ties to a clear objective, with accessible, low-jargon materials suited to a teen audience.</span></div>
-          <div><span class="k">Success measures</span><span class="v">If used in a classroom, I'd look at assessment completion, the quality of students' pathway plans, and self-reported clarity about next steps.</span></div>
+          <div>
+            <span class="k">Problem</span>
+            <span class="v">High-school students need a clear way to explore college, certification, apprenticeship, and workforce pathways.</span>
+          </div>
+          <div>
+            <span class="k">Approach</span>
+            <span class="v">Designed instructional materials plus an aligned assessment that guide students to compare options and build a <strong>personalized post-graduation plan</strong>.</span>
+          </div>
+          <div>
+            <span class="k">Design rationale</span>
+            <span class="v">Used <strong>backward design</strong> so every activity ties to a clear objective, with accessible, low-jargon materials suited to a teen audience.</span>
+          </div>
+          <div>
+            <span class="k">Success measures</span>
+            <span class="v">If used in a classroom, I'd look at assessment completion, the quality of students' pathway plans, and self-reported clarity about next steps.</span>
+          </div>
         </div>
       </div>
-      <a href="docs/my-future-my-fit.pdf" target="_blank" rel="noopener" class="view">View project <span class="arrow">→</span></a>
+
+      <a href="docs/my-future-my-fit.pdf" target="_blank" rel="noopener" class="view">
+        View project <span class="arrow">→</span>
+      </a>
     </article>
 
-    <!-- Project 3 -->
+
+    <!-- ─────────────────────────────────────────────
+         PROJECT 03 — Implementation & Evaluation Reflection
+         Domain: evaluation / iterative improvement
+         Framework: Kirkpatrick model (4 levels)
+         Artifact: 4-page reflection PDF (116 KB)
+         ───────────────────────────────────────────── -->
     <article class="project reveal">
       <div class="pnum">03</div>
+
       <div>
         <h3>Implementation &amp; Evaluation Reflection</h3>
-        <div class="tags"><span class="tag concept">Concept project</span><span class="tag">Evaluation</span><span class="tag">Kirkpatrick</span><span class="tag">Iteration</span></div>
+
+        <div class="tags">
+          <span class="tag concept">Concept project</span>
+          <span class="tag">Evaluation</span>
+          <span class="tag">Kirkpatrick</span>
+          <span class="tag">Iteration</span>
+        </div>
+
         <div class="pao">
-          <div><span class="k">Problem</span><span class="v">Once a learning solution is delivered, how do you know it's <strong>actually working</strong> for learners?</span></div>
-          <div><span class="k">Approach</span><span class="v">Built an evaluation framework examining delivery, alignment to objectives, and learner engagement, then mapped concrete revisions.</span></div>
-          <div><span class="k">Design rationale</span><span class="v">Applied <strong>Kirkpatrick-style thinking</strong> to separate "did they like it" from "did they learn it," so revisions target real gaps.</span></div>
-          <div><span class="k">Success measures</span><span class="v">I'd evaluate against the learning objectives using completion, assessment scores, and learner feedback to prioritize the highest-impact fixes.</span></div>
+          <div>
+            <span class="k">Problem</span>
+            <span class="v">Once a learning solution is delivered, how do you know it's <strong>actually working</strong> for learners?</span>
+          </div>
+          <div>
+            <span class="k">Approach</span>
+            <span class="v">Built an evaluation framework examining delivery, alignment to objectives, and learner engagement, then mapped concrete revisions.</span>
+          </div>
+          <div>
+            <span class="k">Design rationale</span>
+            <span class="v">Applied <strong>Kirkpatrick-style thinking</strong> to separate "did they like it" from "did they learn it," so revisions target real gaps.</span>
+          </div>
+          <div>
+            <span class="k">Success measures</span>
+            <span class="v">I'd evaluate against the learning objectives using completion, assessment scores, and learner feedback to prioritize the highest-impact fixes.</span>
+          </div>
         </div>
       </div>
-      <a href="docs/implementation-evaluation-reflection.pdf" target="_blank" rel="noopener" class="view">View reflection <span class="arrow">→</span></a>
+
+      <a href="docs/implementation-evaluation-reflection.pdf" target="_blank" rel="noopener" class="view">
+        View reflection <span class="arrow">→</span>
+      </a>
     </article>
+
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — identical across all pages
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">

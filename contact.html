@@ -1,4 +1,48 @@
 <!DOCTYPE html>
+<!--
+  contact.html — Contact Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  PAGE ROLE
+  Primary conversion destination — where interested employers,
+  recruiters, or collaborators reach out.  Presents a direct
+  email address alongside a contact form.
+
+  LAYOUT — two-column grid (.contact-grid, 1fr / 1fr)
+  ┌──────────────────────────┬───────────────────────────┐
+  │  Intro + email address   │  Contact form             │
+  └──────────────────────────┴───────────────────────────┘
+  Collapses to single column on mobile (≤900px).
+
+  EMAIL ADDRESS
+  dsamuel.professional@gmail.com
+  The <a href="mailto:..."> link opens the user's default mail
+  app.  Styled with .email-link (Fraunces, brass underline).
+
+  CONTACT FORM
+  The form is purely front-end — there is no server-side handler.
+  The onsubmit handler:
+    1. Calls event.preventDefault() to stop the default GET/POST
+    2. Changes the submit button text to a confirmation message
+  This gives visitors a polite UX response without an actual
+  email being sent.
+
+  TO WIRE UP REAL EMAIL DELIVERY
+  Replace the inline onsubmit with a fetch() POST to one of:
+    • Formspree  (https://formspree.io)  — free tier available
+    • EmailJS    (https://www.emailjs.com) — client-side only
+    • Netlify Forms (if moving back to Netlify hosting)
+  Example Formspree snippet:
+    <form action="https://formspree.io/f/YOUR_ID" method="POST">
+      (remove the onsubmit and JS handler entirely)
+
+  ACTIVE NAV STATE
+  No link in .nav-links has class="active" — the "Get in touch"
+  CTA button is already visually distinct (pill style) and
+  adding .active would create a visual conflict.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,6 +57,10 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — no "active" link; the CTA pill is already
+     visually distinguished from regular nav links
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
@@ -26,6 +74,10 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HEADER
+     ═══════════════════════════════════════════════════ -->
 <header class="page-header">
   <div class="wrap">
     <div class="kicker">Contact</div>
@@ -33,25 +85,85 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     CONTACT SECTION
+     Two-column grid: intro/email (left) + form (right).
+     Both children use class="reveal" for scroll-in animation.
+     The safety net in site.js ensures they show immediately
+     on load since they're typically above the fold.
+     ═══════════════════════════════════════════════════ -->
 <section class="section-pad contact">
   <div class="wrap contact-grid">
+
+    <!-- ── LEFT: intro text + direct email ─────────────── -->
     <div class="reveal">
       <p class="lede">Open to instructional design and learner experience roles — remote-first, collaborative teams that value the learner's perspective. I'd love to hear from you.</p>
-      <a href="mailto:dsamuel.professional@gmail.com" class="email-link">dsamuel.professional@gmail.com</a>
+
+      <!--
+        mailto: link — opens the visitor's default mail client.
+        Style class .email-link renders it in Fraunces with a
+        brass bottom border (see styles.css §13).
+      -->
+      <a href="mailto:dsamuel.professional@gmail.com" class="email-link">
+        dsamuel.professional@gmail.com
+      </a>
     </div>
-    <form class="reveal" onsubmit="event.preventDefault(); this.querySelector('.btn-primary').textContent='Thanks — message ready to send ✦';">
+
+    <!-- ── RIGHT: contact form ──────────────────────────
+         onsubmit:
+           event.preventDefault()  — blocks default form POST
+           button text changes     — visual confirmation for the visitor
+         No data is actually transmitted until a backend is wired up.
+         See the file-level comment above for options.
+         ──────────────────────────────────────────────────── -->
+    <form class="reveal"
+          onsubmit="event.preventDefault(); this.querySelector('.btn-primary').textContent='Thanks — message ready to send ✦';">
+
+      <!-- First name + Last name side by side (.frow = 2-col grid) -->
       <div class="frow">
-        <div class="field"><label>First name</label><input type="text" required /></div>
-        <div class="field"><label>Last name</label><input type="text" required /></div>
+        <div class="field">
+          <label>First name</label>
+          <input type="text" required />
+        </div>
+        <div class="field">
+          <label>Last name</label>
+          <input type="text" required />
+        </div>
       </div>
-      <div class="field"><label>Email</label><input type="email" required /></div>
-      <div class="field"><label>Subject</label><input type="text" /></div>
-      <div class="field"><label>Message</label><textarea required></textarea></div>
-      <button type="submit" class="btn btn-primary">Send message <span class="arrow">→</span></button>
+
+      <!-- Email — type="email" triggers browser-native validation -->
+      <div class="field">
+        <label>Email</label>
+        <input type="email" required />
+      </div>
+
+      <!-- Subject — optional field, no required attribute -->
+      <div class="field">
+        <label>Subject</label>
+        <input type="text" />
+      </div>
+
+      <!-- Message — resizable textarea, min-height 110px via CSS -->
+      <div class="field">
+        <label>Message</label>
+        <textarea required></textarea>
+      </div>
+
+      <!-- Submit — full-width inside the form (styles.css: form .btn-primary) -->
+      <button type="submit" class="btn btn-primary">
+        Send message <span class="arrow">→</span>
+      </button>
+
     </form>
+
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — identical across all pages
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">

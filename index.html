@@ -1,66 +1,186 @@
 <!DOCTYPE html>
+<!--
+  index.html — Home Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  PAGE ROLE
+  The entry point of the portfolio.  Establishes the brand,
+  communicates the value proposition quickly, and routes visitors
+  to the two most important destinations: Work and Contact.
+
+  SECTIONS (in order)
+  1. NAV         — sticky header with brand + links
+  2. HERO        — headline, portrait, lede copy, two CTA buttons
+  3. VALUE STRIP — four proof-points (evergreen band)
+  4. CLOSING CTA — secondary call-to-action above the footer
+  5. FOOTER      — site-wide footer
+
+  ACTIVE NAV STATE
+  This is the home page, so NO link in .nav-links has class="active".
+  On all other pages (work.html, about.html, etc.) the corresponding
+  link carries class="active" for the underline treatment.
+
+  HEADSHOT / PORTRAIT
+  The <img> src points to "headshot.jpg" in the same folder.
+  If the file doesn't exist, the browser fires onerror, which:
+    1. hides the <img> (this.style.display='none')
+    2. shows the .monogram <div> (this.nextElementSibling.style.display='flex')
+  To add a real photo: drop a file named headshot.jpg into the
+  donteisha-portfolio/ folder.  No code changes needed.
+
+  FONTS
+  Fraunces (display serif) + Hanken Grotesk (body) — loaded from
+  Google Fonts via preconnect + stylesheet link in <head>.
+  Both are declared as CSS custom properties in styles.css.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Primary page title — appears in browser tab and search results -->
 <title>D. Samuel — Instructional &amp; Learner Experience Design</title>
+
+<!-- Meta description — shown as the snippet under the link in Google results -->
 <meta name="description" content="Instructional designer and learner experience designer. 12 years of teaching experience, strengthened through UX-informed design — learning that feels clear, supportive, and practical." />
+
+<!-- Google Fonts: preconnect reduces DNS + TLS handshake time before the stylesheet fetch -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- Shared stylesheet (Forest & Stone theme — all pages share this file) -->
 <link rel="stylesheet" href="styles.css" />
+
+<!-- defer: script runs after HTML is parsed; no render blocking -->
 <script src="site.js" defer></script>
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — sticky top header
+     id="nav" is referenced by site.js to add the .scrolled
+     class once the user scrolls past 12px.
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
+    <!-- Brand/logo: links back to the home page from any page -->
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
+
+    <!-- Desktop nav links / mobile dropdown panel.
+         id="navLinks" is toggled by site.js (hamburger click).
+         No link has class="active" here because this IS the home page. -->
     <nav class="nav-links" id="navLinks">
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
       <a href="writing.html">Writing</a>
+      <!-- "Get in touch" is a styled pill CTA, not a plain link -->
       <a href="contact.html" class="nav-cta">Get in touch</a>
     </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+
+    <!-- Hamburger button: hidden on desktop (styles.css), visible at ≤900px.
+         Three <span> elements form the three bars of the icon. -->
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
-<!-- ============ HERO ============ -->
+
+<!-- ═══════════════════════════════════════════════════
+     HERO — above-the-fold introduction
+     Two-column grid (.hero-grid): text (left) + portrait (right).
+     Grid collapses to single column at ≤900px (portrait moves
+     above the text via order: -1 in styles.css).
+
+     Hero text elements use CSS animation (not .reveal) so they
+     animate in immediately on page load without waiting for
+     scroll.  See styles.css §16 for the staggered delays.
+     ═══════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="wrap hero-grid">
+
+    <!-- LEFT: text content -->
     <div>
+      <!-- Small ALL-CAPS kicker above the headline -->
       <span class="eyebrow">Instructional &amp; Learner Experience Design</span>
+
+      <!-- Main headline — <em> renders in italic evergreen green -->
       <h1>Learning that's<br>well-built <em>and</em><br>well-experienced.</h1>
+
+      <!-- Role / subtitle -->
       <p class="role">Instructional Designer &amp; Learner Experience Designer</p>
+
+      <!-- Lede paragraph — short value summary, max ~30em wide via CSS -->
       <p class="lede">I create learner-centered training that's easy to follow and built for real-world use — shaped by 12 years of teaching and strengthened with UX-informed design, so learning feels clear, supportive, and practical from start to finish.</p>
+
+      <!-- Primary + secondary CTA buttons -->
       <div class="hero-cta">
         <a href="work.html" class="btn btn-primary">View selected work <span class="arrow">→</span></a>
         <a href="contact.html" class="btn btn-ghost">Let's talk</a>
       </div>
     </div>
+
+    <!-- RIGHT: portrait / monogram -->
     <div class="portrait-wrap">
       <div class="portrait">
-        <!-- Drop a photo named "headshot.jpg" next to this file and it appears automatically. -->
-        <img src="headshot.jpg" alt="D. Samuel" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <!--
+          Headshot image with graceful fallback:
+          • src="headshot.jpg" — looks for the file next to index.html
+          • onerror hides the <img> and shows .monogram if the file is missing
+          To use a real photo: add headshot.jpg to the donteisha-portfolio/ folder.
+        -->
+        <img src="headshot.jpg" alt="D. Samuel"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+        <!-- Monogram fallback — hidden by default; shown via onerror above -->
         <div class="monogram" style="display:none;">DS</div>
       </div>
+      <!-- Floating badge — rotated -3deg for a sticker/label aesthetic -->
       <span class="badge">12 yrs in education ✦</span>
     </div>
+
   </div>
 </section>
 
-<!-- ============ VALUE STRIP ============ -->
+
+<!-- ═══════════════════════════════════════════════════
+     VALUE STRIP — four credential / positioning points
+     Full-width evergreen background band.
+     Four .stat columns: number/acronym + short label.
+     Each .stat has class="reveal" so it fades in on scroll.
+     Grid collapses to 2×2 at ≤900px (styles.css).
+     ═══════════════════════════════════════════════════ -->
 <div class="strip">
   <div class="wrap strip-inner">
-    <div class="stat reveal"><span class="num">12<em>+</em></span><span class="lbl">Years teaching &amp; designing learning</span></div>
-    <div class="stat reveal"><span class="num">ADDIE</span><span class="lbl">Grounded in proven design models</span></div>
-    <div class="stat reveal"><span class="num">UX</span><span class="lbl">Learner research &amp; usability informed</span></div>
-    <div class="stat reveal"><span class="num">A11y</span><span class="lbl">Accessible &amp; inclusive by default</span></div>
+    <div class="stat reveal">
+      <span class="num">12<em>+</em></span>
+      <span class="lbl">Years teaching &amp; designing learning</span>
+    </div>
+    <div class="stat reveal">
+      <span class="num">ADDIE</span>
+      <span class="lbl">Grounded in proven design models</span>
+    </div>
+    <div class="stat reveal">
+      <span class="num">UX</span>
+      <span class="lbl">Learner research &amp; usability informed</span>
+    </div>
+    <div class="stat reveal">
+      <span class="num">A11y</span>
+      <span class="lbl">Accessible &amp; inclusive by default</span>
+    </div>
   </div>
 </div>
 
-<!-- ============ CLOSING CTA ============ -->
+
+<!-- ═══════════════════════════════════════════════════
+     CLOSING CTA — secondary conversion section
+     Centered text block above the footer.
+     Uses --sand-deep background to visually separate this
+     zone from the plain --sand content above.
+     Two buttons: primary (Work) + ghost (Writing).
+     ═══════════════════════════════════════════════════ -->
 <section class="home-cta">
   <div class="wrap">
     <h2>Explore the work, or <em>start a conversation.</em></h2>
@@ -72,7 +192,15 @@
   </div>
 </section>
 
-<!-- ============ FOOTER ============ -->
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — shared across all pages
+     Deep forest (--panel) background.
+     foot-top: brand quote (left) + nav links (right)
+     foot-bottom: copyright + tagline
+     Identical markup is repeated in every page file so
+     each page is self-contained (no server-side includes).
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">

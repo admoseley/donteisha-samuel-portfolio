@@ -1,4 +1,45 @@
 <!DOCTYPE html>
+<!--
+  about.html — About Page
+  ═══════════════════════════════════════════════════════════════
+  D. Samuel · Instructional & Learner Experience Design Portfolio
+  ═══════════════════════════════════════════════════════════════
+
+  PAGE ROLE
+  Introduces D. Samuel's professional identity, guiding Mission
+  and Vision, and a scannable skills & tools inventory.
+  Recruiters and hiring managers typically visit this page after
+  reviewing the work to learn more about the person behind it.
+
+  LAYOUT — two-column grid (.about-grid, 1fr / 1fr)
+  ┌─────────────────────────┬──────────────────────────┐
+  │  Mission card           │  Skills & Toolkit panel  │
+  │  Vision card            │  (sticky on desktop)     │
+  └─────────────────────────┴──────────────────────────┘
+  On mobile (≤900px) the grid stacks; the panel loses its
+  sticky positioning (styles.css §17).
+
+  MISSION / VISION CARDS (.vm-card)
+  Cream-background cards with a 4px evergreen left border accent.
+  Both use class="reveal" for a staggered scroll-in animation.
+
+  SKILLS PANEL (.skills-panel)
+  Dark (--panel) sidebar with three skill groups:
+    1. Design & strategy  — methodologies and frameworks
+    2. Authoring & tools  — software and production tools
+    3. Platforms          — LMS and delivery environments
+  Each group uses .chip pills.  Edit the chip list to match
+  D. Samuel's exact current toolset — recruiters scan this first.
+
+  RESUME LINK
+  Currently href="#" (placeholder).  When a resume PDF is ready:
+    1. Add the file to docs/ (e.g., docs/resume-d-samuel.pdf)
+    2. Update the href below to: href="docs/resume-d-samuel.pdf"
+    3. Add target="_blank" rel="noopener" to open in a new tab
+
+  ACTIVE NAV STATE
+  class="active" is on the About link.
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -13,11 +54,15 @@
 </head>
 <body>
 
+<!-- ═══════════════════════════════════════════════════
+     NAV — class="active" is on About
+     ═══════════════════════════════════════════════════ -->
 <header class="nav" id="nav">
   <div class="wrap nav-inner">
     <a href="index.html" class="brand">D. Samuel<span class="dot">.</span></a>
     <nav class="nav-links" id="navLinks">
       <a href="work.html">Work</a>
+      <!-- "About" carries class="active" — full underline in styles.css -->
       <a href="about.html" class="active">About</a>
       <a href="writing.html">Writing</a>
       <a href="contact.html" class="nav-cta">Get in touch</a>
@@ -26,6 +71,10 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     PAGE HEADER
+     ═══════════════════════════════════════════════════ -->
 <header class="page-header">
   <div class="wrap">
     <div class="kicker">About</div>
@@ -34,47 +83,114 @@
   </div>
 </header>
 
+
+<!-- ═══════════════════════════════════════════════════
+     MAIN CONTENT — two-column about-grid
+     ═══════════════════════════════════════════════════ -->
 <section class="section-pad">
   <div class="wrap">
     <div class="about-grid">
+
+      <!-- ── LEFT: Mission + Vision cards ──────────────────────
+           Both use class="reveal" for scroll-in animation.
+           The IntersectionObserver safety net in site.js ensures
+           these show immediately if they're already in view on load.
+           Each card has a 4px evergreen left border (via ::before
+           pseudo-element in styles.css §11).
+           ──────────────────────────────────────────────────────── -->
       <div class="vm">
+
         <div class="vm-card reveal">
           <h4>Mission</h4>
           <p>To create learning experiences that are clear, organized, and focused on the learner. I draw on my background in elementary education to anticipate challenges and design instruction that builds confidence and growth — making sure objectives, instruction, and assessment work together, and that accessibility and usability come first.</p>
         </div>
+
         <div class="vm-card reveal">
           <h4>Vision</h4>
           <p>To design learning ecosystems that scale — partnering with organizations that value the learner's perspective and make space for discovery, testing, and refinement. I'm deepening skills in learner research, information architecture, and accessibility so learning isn't only effective, but intuitive to navigate and easy to revisit.</p>
         </div>
+
       </div>
 
+
+      <!-- ── RIGHT: Skills & Toolkit panel ─────────────────────
+           Dark (--panel / deep forest) sticky sidebar.
+           position: sticky top: 96px keeps it anchored while
+           the Mission/Vision cards scroll on the left.
+           The .sub paragraph is a note-to-self reminder to keep
+           this list current — recruiters scan it fast.
+
+           UPDATING SKILLS
+           • Edit .chip text directly.
+           • To add a chip: duplicate <span class="chip">...</span>
+           • To remove: delete the span
+           • Group labels (.gl) can also be renamed or reordered
+
+           RESUME LINK
+           Update href="#" to the actual PDF path when available.
+           ──────────────────────────────────────────────────────── -->
       <aside class="skills-panel reveal">
         <h4>Skills &amp; toolkit</h4>
+        <!-- Reminder note — visible on the live site; remove if preferred -->
         <p class="sub">Edit this list to match exactly what you use — recruiters scan it first.</p>
+
+        <!-- ── Group 1: Design methodologies & strategy ── -->
         <div class="skill-group">
           <div class="gl">Design &amp; strategy</div>
           <div class="chips">
-            <span class="chip">ADDIE</span><span class="chip">Backward Design</span><span class="chip">Bloom's Taxonomy</span><span class="chip">Needs analysis</span><span class="chip">Assessment alignment</span><span class="chip">Learner research</span><span class="chip">Accessibility (WCAG)</span>
+            <span class="chip">ADDIE</span>
+            <span class="chip">Backward Design</span>
+            <span class="chip">Bloom's Taxonomy</span>
+            <span class="chip">Needs analysis</span>
+            <span class="chip">Assessment alignment</span>
+            <span class="chip">Learner research</span>
+            <span class="chip">Accessibility (WCAG)</span>
           </div>
         </div>
+
+        <!-- ── Group 2: Authoring software & production tools ── -->
         <div class="skill-group">
           <div class="gl">Authoring &amp; tools</div>
           <div class="chips">
-            <span class="chip">Articulate Storyline</span><span class="chip">Rise 360</span><span class="chip">Adobe Captivate</span><span class="chip">Figma</span><span class="chip">Canva</span><span class="chip">Vyond</span><span class="chip">Camtasia</span>
+            <span class="chip">Articulate Storyline</span>
+            <span class="chip">Rise 360</span>
+            <span class="chip">Adobe Captivate</span>
+            <span class="chip">Figma</span>
+            <span class="chip">Canva</span>
+            <span class="chip">Vyond</span>
+            <span class="chip">Camtasia</span>
           </div>
         </div>
+
+        <!-- ── Group 3: LMS & delivery platforms ── -->
         <div class="skill-group">
           <div class="gl">Platforms</div>
           <div class="chips">
-            <span class="chip">Canvas</span><span class="chip">Google Classroom</span><span class="chip">Moodle</span><span class="chip">LMS administration</span>
+            <span class="chip">Canvas</span>
+            <span class="chip">Google Classroom</span>
+            <span class="chip">Moodle</span>
+            <span class="chip">LMS administration</span>
           </div>
         </div>
+
+        <!--
+          RESUME DOWNLOAD
+          ──────────────
+          Currently points to "#" — update when resume PDF is ready:
+            href="docs/resume-d-samuel.pdf"
+          Add target="_blank" rel="noopener" to open in new tab.
+        -->
         <a href="#" class="resume-link">Download résumé (PDF) <span class="arrow">↓</span></a>
       </aside>
+
     </div>
   </div>
 </section>
 
+
+<!-- ═══════════════════════════════════════════════════
+     FOOTER — identical across all pages
+     ═══════════════════════════════════════════════════ -->
 <footer>
   <div class="wrap">
     <div class="foot-top">
