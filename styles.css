@@ -907,116 +907,52 @@ footer { background: var(--panel); color: var(--sand); position: relative; z-ind
 }
 .slide img:hover { box-shadow: 0 6px 28px rgba(30,40,50,.22); }
 
-/* Slide hover hint — "Click to expand" overlay appears on hover */
-.slide { position: relative; cursor: pointer; }
-.slide::after {
-  content: "Click to expand";
-  position: absolute;
-  inset: 0;
-  background: rgba(15, 20, 30, 0.52);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border-radius: 6px;
-  opacity: 0;
-  transition: opacity .2s ease;
-  pointer-events: none;
-}
-.slide:hover::after { opacity: 1; }
-
-/* ── SLIDESHOW MODAL ──────────────────────────────────────────
-   Full-screen lightbox that opens when a slide is clicked.
-   Flex row: [prev] [stage] [next] centred in the viewport.
-   Counter and close button are absolute-positioned overlays.
+/* ── SLIDE VIEWER (.sv) ───────────────────────────────────────
+   Single-slide-at-a-time viewer embedded in the page.
+   Shows one image, a section label, a counter, prev/next
+   buttons, and a progress bar that fills as you advance.
    ────────────────────────────────────────────────────────── */
-.slideshow-modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(12, 17, 22, 0.96);
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 64px 24px 40px;
-}
-.slideshow-modal.active { display: flex; }
+.sv { background: var(--panel); border-radius: 16px; padding: 28px 32px 32px; }
 
-.slideshow-stage {
-  flex: 1;
-  max-width: min(88vw, 1200px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Header row: section label (left) + counter (right) */
+.sv-header { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+.sv-section { font-family: var(--font-display); font-weight: 600; font-size: 1rem; color: var(--sand); letter-spacing: -0.01em; }
+.sv-count   { font-family: var(--font-body); font-size: 0.82rem; font-weight: 600; color: #9aa79f; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
 
-.slideshow-img {
+/* Slide image */
+.sv-img {
   width: 100%;
   height: auto;
-  max-height: 82vh;
-  object-fit: contain;
-  border-radius: 6px;
   display: block;
-  box-shadow: 0 8px 48px rgba(0,0,0,.6);
+  border-radius: 8px;
+  box-shadow: 0 4px 32px rgba(0,0,0,.45);
+  transition: opacity .18s ease;
 }
 
-.slideshow-nav {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,.25);
+/* Progress bar */
+.sv-progress { height: 3px; background: rgba(255,255,255,.12); border-radius: 2px; margin: 18px 0; overflow: hidden; }
+.sv-progress-fill { height: 100%; background: var(--terracotta); border-radius: 2px; transition: width .25s ease; }
+
+/* Controls row: prev (left) + next (right) */
+.sv-controls { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 4px; }
+.sv-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px;
   background: rgba(255,255,255,.08);
-  color: #fff;
-  font-size: 1.3rem;
+  border: 1.5px solid rgba(255,255,255,.2);
+  border-radius: 8px;
+  color: var(--sand);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   transition: background .2s ease, border-color .2s ease;
 }
-.slideshow-nav:hover {
-  background: rgba(255,255,255,.22);
-  border-color: rgba(255,255,255,.55);
-}
-
-.slideshow-close {
-  position: absolute;
-  top: 18px;
-  right: 22px;
-  background: none;
-  border: none;
-  color: rgba(255,255,255,.7);
-  font-size: 2rem;
-  line-height: 1;
-  cursor: pointer;
-  padding: 4px 8px;
-  transition: color .2s ease;
-}
-.slideshow-close:hover { color: #fff; }
-
-.slideshow-counter {
-  position: absolute;
-  top: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: rgba(255,255,255,.6);
-  font-family: var(--font-body);
-  font-size: 0.82rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
+.sv-btn:hover   { background: rgba(255,255,255,.16); border-color: rgba(255,255,255,.45); }
+.sv-btn:disabled { opacity: .3; cursor: default; }
 
 @media (max-width: 700px) {
   .slide-grid { grid-template-columns: 1fr; }
-  .slideshow-nav { width: 38px; height: 38px; font-size: 1rem; }
-  .slideshow-modal { gap: 10px; padding: 56px 12px 28px; }
+  .sv { padding: 20px 18px 24px; }
+  .sv-btn { padding: 9px 14px; font-size: 0.82rem; }
 }
