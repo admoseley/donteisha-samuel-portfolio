@@ -232,6 +232,69 @@
 </article>
 
 
+<!-- ── SLIDESHOW MODAL ──────────────────────────────────────── -->
+<div class="slideshow-modal" id="slideshowModal" role="dialog" aria-modal="true" aria-label="Slide viewer">
+  <button class="slideshow-close" id="slideshowClose" aria-label="Close slideshow">&#x2715;</button>
+  <div class="slideshow-counter" id="slideshowCounter">1 / 30</div>
+  <button class="slideshow-nav" id="slideshowPrev" aria-label="Previous slide">&#8592;</button>
+  <div class="slideshow-stage">
+    <img class="slideshow-img" id="slideshowImg" src="" alt="" />
+  </div>
+  <button class="slideshow-nav" id="slideshowNext" aria-label="Next slide">&#8594;</button>
+</div>
+
+<script>
+(function () {
+  var slides = Array.from(document.querySelectorAll('.slide img'));
+  var modal   = document.getElementById('slideshowModal');
+  var img     = document.getElementById('slideshowImg');
+  var counter = document.getElementById('slideshowCounter');
+  var closeBtn= document.getElementById('slideshowClose');
+  var prevBtn = document.getElementById('slideshowPrev');
+  var nextBtn = document.getElementById('slideshowNext');
+  var current = 0;
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    img.src = slides[current].src;
+    img.alt = slides[current].alt;
+    counter.textContent = (current + 1) + ' \u2F ' + slides.length;
+  }
+
+  function open(index) {
+    show(index);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function close() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  slides.forEach(function (el, i) {
+    el.parentElement.addEventListener('click', function () { open(i); });
+  });
+
+  prevBtn.addEventListener('click', function () { show(current - 1); });
+  nextBtn.addEventListener('click', function () { show(current + 1); });
+  closeBtn.addEventListener('click', close);
+
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!modal.classList.contains('active')) return;
+    if (e.key === 'ArrowLeft')  { show(current - 1); }
+    if (e.key === 'ArrowRight') { show(current + 1); }
+    if (e.key === 'Escape')     { close(); }
+  });
+}());
+</script>
+
+
 <section class="more-writing">
   <div class="wrap">
     <div class="eyebrow">More projects</div>
