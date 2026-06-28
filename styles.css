@@ -839,4 +839,74 @@ footer { background: var(--panel); color: var(--sand); position: relative; z-ind
   .section-pad { padding: 40px 0 70px; }
   .frow        { grid-template-columns: 1fr; } /* First/Last stacked */
   .references  { padding: 24px 22px; }
+  .slide-grid  { grid-template-columns: 1fr; }
+}
+
+
+/* ============================================================
+  18. SLIDE GALLERY — project artifact visual embeds
+   ─────────────────────────────────────────────────────────────
+   Used on project-*.html pages to display PDF slide exports
+   as native web images, grouped by session with headings.
+
+   STRUCTURE
+   .slide-deck              — outer section wrapping all sessions
+   .slide-session           — one session block (heading + grid)
+   .slide-session-label     — session heading (Fraunces, brass bar)
+   .slide-grid              — 2-col image grid (collapses at 700px)
+   .slide                   — <figure> wrapper for each image
+   .slide img               — the actual slide image
+
+   IMAGE FORMAT
+   JPEG at 1400×788 (150 DPI export from pdftoppm).
+   lazy-loaded with loading="lazy" on each <img>.
+   ============================================================ */
+.slide-deck { padding: 3rem 0 5rem; }
+
+.slide-session { margin-bottom: 4rem; }
+
+.slide-session-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 1.25rem;
+  padding-bottom: .75rem;
+  border-bottom: 2px solid var(--line);
+}
+.slide-session-label::before {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 3px;
+  background: var(--terracotta);
+  margin-bottom: .9rem;
+  border-radius: 2px;
+}
+
+.slide-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.slide {
+  margin: 0;
+  padding: 0;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  box-shadow: 0 2px 16px rgba(30,40,50,.13);
+  transition: box-shadow .2s ease;
+}
+.slide img:hover { box-shadow: 0 6px 28px rgba(30,40,50,.22); }
+
+@media (max-width: 700px) {
+  .slide-grid { grid-template-columns: 1fr; }
 }
