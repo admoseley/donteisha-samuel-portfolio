@@ -2,7 +2,7 @@
 
 A professionally designed, fully static multi-page portfolio website for **D. Samuel**, an instructional designer and learner experience designer transitioning from 12 years in elementary education into the L&D field.
 
-**Live site:** https://admoseley.github.io/donteisha-samuel-portfolio/
+**Live site:** https://gentle-tree-048183310.6.azurestaticapps.net
 **GitHub repository:** https://github.com/admoseley/donteisha-samuel-portfolio
 
 ---
@@ -361,31 +361,31 @@ Two breakpoints are defined at the bottom of `styles.css`:
 
 ## 11. Hosting & Deployment
 
-### Current Host: GitHub Pages
-The site is deployed via **GitHub Pages** from the `main` branch root.
+### Current Host: Azure Static Web Apps (Free tier)
+The site is deployed to **Azure Static Web Apps** from the `main` branch.
 
-- **Live URL:** https://admoseley.github.io/donteisha-samuel-portfolio/
-- **CDN:** GitHub's global Fastly CDN (same infrastructure as GitHub.com)
+- **Live URL:** https://gentle-tree-048183310.6.azurestaticapps.net
+- **Resource:** Static Web App `swa-dsamuel-portfolio`, resource group `DSamuelPortfolio`
 - **Build:** None — static files are served directly; no build step
-- **Auto-deploy:** Every `git push` to `main` triggers a Pages rebuild (typically < 60 seconds)
-- **`.nojekyll`:** Required so GitHub Pages skips its Jekyll processor and serves `.html` files directly
+- **Auto-deploy:** Every push to `main` deploys via GitHub Actions
+  ([`.github/workflows/azure-static-web-apps.yml`](.github/workflows/azure-static-web-apps.yml))
+- **Config:** [`staticwebapp.config.json`](staticwebapp.config.json) sets security headers and image caching
+- **Secret:** requires the GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN` (SWA deployment token; not stored in the repo)
 
 ### To Deploy Changes
 ```bash
-cd /Users/admoseley/DeeDee_Project/donteisha-portfolio
 git add <changed-files>
 git commit -m "Description of change"
-git push
+git push        # GitHub Actions deploys to Azure automatically
 ```
-The live site updates within ~60 seconds.
 
-### Previous Host: Netlify (on hold)
-The site was originally configured for Netlify at `donteisha-samuel-portfolio.netlify.app` (site ID: `a6465468-0b14-458f-b644-ba1beb8e0d9d`). Deployment is blocked due to a credit usage limit. The Netlify configuration remains intact and a future deploy can be triggered with:
-```bash
-cd /Users/admoseley/DeeDee_Project/donteisha-portfolio
-netlify deploy --prod --no-build
-```
-Netlify supports "pretty URLs" (`/work` instead of `/work.html`) natively; GitHub Pages does not.
+### Retired Hosts
+- **GitHub Pages** — previously served this repo at `admoseley.github.io/donteisha-samuel-portfolio`; retired in favor of Azure (consolidation).
+- **Netlify** — a stale manual drag-and-drop deploy at `donteisha-samuel-portfolio.netlify.app` (site ID `a6465468-0b14-458f-b644-ba1beb8e0d9d`); decommissioned. It was never linked to this repo.
+
+> Note: the retired Netlify copy used hand-edited "pretty URLs" (`/work`). This
+> repo is the canonical version and uses `.html` links, which Azure Static Web
+> Apps serves directly.
 
 ### Local Development Server
 Because GitHub Pages doesn't serve pretty URLs, and `python3 -m http.server` doesn't map `/work` → `work.html`, a custom Python server was written to mirror production behavior locally:
